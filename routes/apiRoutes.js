@@ -4,6 +4,8 @@ const path = require('path');
 
 router.get("/api/notes", (req, res) => {
     // read db.json and return all saved notes as JSON
+    req.readFileSync('../db/db.json');
+    res.json.parse();
 });
 
 router.post("/api/notes" , (req, res) => {
