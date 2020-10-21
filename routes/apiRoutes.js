@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-module.exports = app => {
+module.exports = function(app) {
     fs.readFile("db/db.json","utf8", (err, data) => {
 
         if (err) throw err;
@@ -31,15 +31,6 @@ module.exports = app => {
             notes.splice(req.params.id, 1);
             updateNotesFile();
             console.log("Removed note with id "+ req.params.id);
-        });
-
-        // HTML Routes
-        app.get('/notes', function(req,res) {
-            res.sendFile(path.join(__dirname, "../public/notes.html"));
-        });
-        
-        app.get('*', function(req,res) {
-            res.sendFile(path.join(__dirname, "../public/index.html"));
         });
 
         function updateNotesFile() {
