@@ -66,9 +66,9 @@ function createDbJson() {
 
             if (err) throw err;
 
-            var notes = JSON.parse(data);
+            var notes = err ? [] : JSON.parse(data) || [];
             notes.splice(req.params.id, 1);
-            updateNotesFile();
+            updateNotesFile(notes);
             console.log("Removed note with id " + req.params.id);
         });
     });
